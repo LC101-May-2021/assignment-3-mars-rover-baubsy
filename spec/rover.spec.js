@@ -11,15 +11,10 @@ describe("Rover class", function() {
   // 7 tests here!
   it("constructor sets position and default values for mode and generatorWatts", function(){
     let mars = new Rover(5);
-    if(mars.position !== 5){
-      fail();
-    }
-    if(mars.mode !== 'NORMAL'){
-      fail();
-    }
-    if(mars.generatorWatts !== 110){
-      fail();
-    }
+    expect(mars.position).toEqual(5);
+    expect(mars.mode).toEqual('NORMAL');
+    expect(mars.generatorWatts).toEqual(110);
+    
   });
 
   it("response returned by receiveMessage contains name of message", function(){
@@ -43,14 +38,9 @@ describe("Rover class", function() {
     let testMess = {message: 'test', commands: [command]};
     let expected = {completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 5}};
     let actual = mars.receiveMessage(testMess).results[0];
-    if(actual.completed !== expected.completed){
-      fail('completion');
-    }
-    
+    expect(actual.completed).toEqual(expected.completed);
     for(prop in actual.roverStatus){
-      if(actual.roverStatus[prop] !== expected.roverStatus[prop]){
-        fail('status');
-      };
+      expect(actual.roverStatus[prop]).toEqual(expected.roverStatus[prop]);
     };
     
   });
