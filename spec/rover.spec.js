@@ -5,7 +5,6 @@ const Command = require('../command.js');
 // NOTE: If at any time, you want to focus on the output from a single test, feel free to comment out all the others.
 //       However, do NOT edit the grading tests for any reason and make sure to un-comment out your code to get the autograder to pass.
 
-
 describe("Rover class", function() {
 
   // 7 tests here!
@@ -19,7 +18,7 @@ describe("Rover class", function() {
 
   it("response returned by receiveMessage contains name of message", function(){
     let mars = new Rover(5);
-    let testMess = {message: 'test', commands: []};
+    let testMess = new Message('test', []);
     expect(mars.receiveMessage(testMess).message).toEqual('test');
     });
   
@@ -59,7 +58,8 @@ describe("Rover class", function() {
     let mars = new Rover(5);
     mars.receiveMessage({message:'test setup', commands: [{commandType: 'MODE_CHANGE', value: 'LOW_POWER'}]});
     let actual = mars.receiveMessage({message:'test move', commands: [{commandType: 'MOVE', value: 10}]});
-    expect(actual.results[0].completed === false);
+    //console.log(`actual ${actual.results[0].completed}`);
+    expect(actual.results[0].completed).toEqual(false);
   });
 
   it("responds with position for move command", function(){

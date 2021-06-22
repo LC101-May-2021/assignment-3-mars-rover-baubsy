@@ -9,7 +9,7 @@ class Rover {
      let response = {};
      let results = [];
      let commands = message.commands;
-     response.message = message.message;
+     response.message = message.name;
      //completed: true, roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 5
      for(let i = 0; i < commands.length; i++){
        if(commands[i].commandType === 'STATUS_CHECK'){
